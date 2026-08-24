@@ -71,10 +71,21 @@ Decisions that make this cheaper to paste than a generic export:
 
 Not on the Web Store — load it unpacked:
 
-1. `git clone` this repo
-2. Visit `chrome://extensions`, turn on **Developer mode**
-3. **Load unpacked**, pick the repo folder
-4. Open an Amazon search page and click the toolbar button
+```bash
+git clone https://github.com/Juliusolsson05/amazon-lister.git
+cd amazon-lister
+npm run build          # writes dist/ — just manifest, src and icons
+```
+
+1. Visit `chrome://extensions` and turn on **Developer mode** (top right)
+2. Click **Load unpacked** and select the **`dist/`** folder
+3. Open any Amazon search page and click the Amazon Lister toolbar button
+
+`npm run build` needs nothing installed — it only copies files. You can also
+point **Load unpacked** at the repo root and it will work exactly the same;
+`dist/` just leaves the tests and tooling out of the extension.
+
+To produce a zip for distribution: `npm run package`.
 
 ## Permissions
 
@@ -89,6 +100,8 @@ clipboard.
 ```bash
 npm install          # note: NODE_ENV=production in your shell will skip devDeps
 npm test             # 29 tests, node:test + jsdom
+npm run build        # copy the extension into dist/
+npm run package      # build, then zip dist/ into amazon-lister.zip
 npm run icons        # regenerate icons/ from tools/make-icons.mjs
 ```
 
@@ -107,6 +120,7 @@ open http://localhost:8749/tools/preview.html
 | `src/modal.js` | The panel, in a shadow root so Amazon's CSS can't reach it. |
 | `src/content.js` | Injection entry point. Toggles the panel. |
 | `src/background.js` | Service worker. Injects the three files on toolbar click. |
+| `tools/build.mjs` | Copies `manifest.json`, `src/` and `icons/` into `dist/`. |
 | `tools/make-icons.mjs` | Writes the PNG icons from scratch via `node:zlib`. |
 | `tools/preview.html` | Panel preview against mock data. |
 

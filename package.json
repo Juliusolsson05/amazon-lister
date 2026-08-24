@@ -6,7 +6,9 @@
   "type": "commonjs",
   "scripts": {
     "test": "node --test test/*.test.js",
-    "icons": "node tools/make-icons.mjs"
+    "icons": "node tools/make-icons.mjs",
+    "build": "node tools/build.mjs",
+    "package": "npm run build && cd dist && zip -qr ../amazon-lister.zip . && echo 'amazon-lister.zip ready'"
   },
   "devDependencies": {
     "jsdom": "^25.0.1"
