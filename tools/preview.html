@@ -1,0 +1,90 @@
+<!doctype html>
+<!--
+  Dev preview for the panel. Serve the repo root and open /tools/preview.html:
+      python3 -m http.server 8731
+  Renders the modal over a mock results page with a realistic payload so the
+  size meter, scrolling and toggles are all exercised.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Amazon Lister — panel preview</title>
+  <style>
+    body { margin:0; font:14px/1.5 system-ui, sans-serif; background:#fff; color:#0f1111; }
+    .fake { padding:20px; }
+    .fake h1 { font-size:18px; margin:0 0 4px; }
+    .fake p { color:#565959; margin:0 0 20px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(210px,1fr)); gap:16px; }
+    .cardish { border:1px solid #e6e6e6; border-radius:8px; padding:12px; height:230px; }
+    .ph { background:#eee; border-radius:4px; }
+    .ph.img { height:130px; margin-bottom:10px; }
+    .ph.l1 { height:12px; width:92%; margin-bottom:6px; }
+    .ph.l2 { height:12px; width:64%; margin-bottom:12px; }
+    .ph.pr { height:16px; width:40%; background:#e2e2e2; }
+  </style>
+</head>
+<body>
+  <div class="fake">
+    <h1>1-22 of over 2,000 results for "mechanical keyboard"</h1>
+    <p>Mock host page — stands in for Amazon so the panel can be reviewed in isolation.</p>
+    <div class="grid" id="grid"></div>
+  </div>
+
+  <script src="../src/parse.js"></script>
+  <script src="../src/modal.js"></script>
+  <script>
+    for (let i = 0; i < 12; i++) {
+      document.getElementById('grid').insertAdjacentHTML('beforeend',
+        '<div class="cardish"><div class="ph img"></div><div class="ph l1"></div><div class="ph l2"></div><div class="ph pr"></div></div>');
+    }
+
+    const BRANDS = ['Keychron K8 Pro QMK/VIA Wireless Mechanical Keyboard',
+      'Razer Huntsman V3 HE Magnetic TKL 8KHz Wired Gaming Keyboard',
+      'NuPhy Air75 V2 Low-Profile Wireless Mechanical Keyboard',
+      'Logitech MX Mechanical Mini Wireless Illuminated Keyboard',
+      'Corsair K70 RGB PRO Tenkeyless Mechanical Gaming Keyboard'];
+
+    function mockResults(state) {
+      const out = [];
+      for (let i = 0; i < 22; i++) {
+        const sponsored = i % 7 === 0;
+        if (sponsored && !state.includeSponsored) continue;
+        const full = {
+          pos: out.length + 1,
+          asin: 'B0' + String(1000000 + i * 7919).slice(0, 8),
+          title: BRANDS[i % BRANDS.length] + (i > 4 ? ' — Model ' + (i + 1) : ''),
+          url: 'https://www.amazon.com/dp/B0' + String(1000000 + i * 7919).slice(0, 8),
+          price: Math.round((29 + i * 11.37) * 100) / 100,
+          currency: 'USD',
+          rating: Math.round((3.8 + (i % 5) * 0.22) * 10) / 10,
+          reviews: 37 + i * 419,
+          image: 'https://m.media-amazon.com/images/I/71A9y3eYngL' + i + '.jpg',
+          delivery: 'FREE delivery Wed, Aug 26',
+          stock: i % 4 === 0 ? 'Only 7 left in stock (more on the way).' : undefined
+        };
+        if (i % 3 === 0) full.listPrice = Math.round(full.price * 1.35 * 100) / 100;
+        if (i % 6 === 0) full.badge = 'Overall Pick';
+        if (sponsored) full.sponsored = true;
+        if (i % 2 === 0) full.boughtPastMonth = (i * 50 + 100) + '+';
+        out.push(state.slim ? AmazonLister.slim(AmazonLister.compact(full)) : AmazonLister.compact(full));
+      }
+      return out;
+    }
+
+    AmazonLister.openModal({
+      extract: (state) => {
+        const results = mockResults(state);
+        return {
+          source: 'amazon.com',
+          query: 'mechanical keyboard',
+          page: 1,
+          resultsSummary: '1-22 of over 2,000 results for "mechanical keyboard"',
+          capturedAt: new Date().toISOString(),
+          count: results.length,
+          results
+        };
+      }
+    });
+  </script>
+</body>
+</html>

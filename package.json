@@ -1,0 +1,14 @@
+{
+  "name": "amazon-lister",
+  "version": "0.1.0",
+  "private": true,
+  "description": "One-click Amazon search results -> clean JSON, sized for pasting into an LLM.",
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "icons": "node tools/make-icons.mjs"
+  },
+  "devDependencies": {
+    "jsdom": "^25.0.1"
+  }
+}

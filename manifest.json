@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Amazon Lister",
+  "version": "0.1.0",
+  "description": "One click turns the Amazon search results you're looking at into clean JSON, ready to paste into an LLM.",
+  "permissions": ["activeTab", "scripting"],
+  "background": { "service_worker": "src/background.js" },
+  "action": {
+    "default_title": "Extract search results as JSON",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

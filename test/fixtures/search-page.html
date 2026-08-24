@@ -1,0 +1,105 @@
+<!doctype html>
+<!--
+  Structural fixture mirroring live amazon.com search markup (recorded Aug 2026):
+  the class names, data-cy hooks, aria-labels and nesting below are the real ones.
+  Text/ASINs are stand-ins. Cards cover: sponsored, badge + strike price,
+  a card with no rating, and a placeholder shell with no title.
+-->
+<html lang="en">
+<head><title>Amazon.com : mechanical keyboard</title></head>
+<body>
+<div class="s-desktop-content">
+  <div data-component-type="s-result-info-bar"><span>1-16 of over 2,000 results for "mechanical keyboard"</span></div>
+  <div class="s-main-slot s-result-list">
+
+    <!-- 1. Sponsored, strike-through list price, badge, bought-in-past-month -->
+    <div role="listitem" data-asin="B0H47Z2J3T" data-index="4" data-component-type="s-search-result" class="sg-col-20-of-24 s-result-item s-asin">
+      <span class="a-badge-label"><span class="a-badge-text">Overall Pick</span></span>
+      <img class="s-image" src="https://m.media-amazon.com/images/I/71A9y3eYngL._AC_UY218_.jpg" alt="Razer Huntsman V3 HE">
+      <div data-cy="title-recipe">
+        <span class="puis-label-popover-default"><span class="a-color-secondary">Sponsored</span></span>
+        <a class="a-link-normal s-line-clamp-2" href="/sspa/click?ie=UTF8&amp;spc=MT0x&amp;url=%2FRazer-Huntsman%2Fdp%2FB0H47Z2J3T">
+          <h2 class="a-size-base-plus a-color-base"><span>Razer Huntsman V3 HE Magnetic TKL 8KHz Wired Gaming Keyboard</span></h2>
+        </a>
+      </div>
+      <div data-cy="reviews-block">
+        <div class="a-row a-size-small">
+          <span class="a-size-small a-color-base">4.4</span>
+          <span class="a-declarative">
+            <a class="a-popover-trigger a-declarative" href="#" aria-label="4.4 out of 5 stars, rating details">
+              <i class="a-icon a-icon-star-mini a-star-mini-4-5"><span class="a-icon-alt">4.4 out of 5 stars</span></i>
+            </a>
+          </span>
+          <span class="rush-component">
+            <div class="s-csa-instrumentation-wrapper">
+              <a class="a-link-normal s-underline-text s-underline-link-text" href="/product-reviews/B0H47Z2J3T" aria-label="1,204 ratings">
+                <span class="a-size-mini puis-normal-weight-text s-underline-text">(1,204)</span>
+              </a>
+            </div>
+          </span>
+        </div>
+        <div class="a-row a-size-base"><span class="a-size-base a-color-secondary">300+ bought in past month</span></div>
+      </div>
+      <div data-cy="price-recipe">
+        <div class="a-row">
+          <span class="a-price" data-a-size="xl"><span class="a-offscreen">$139.99</span><span aria-hidden="true"><span class="a-price-symbol">$</span><span class="a-price-whole">139<span class="a-price-decimal">.</span></span><span class="a-price-fraction">99</span></span></span>
+          <span class="a-price a-text-price" data-a-strike="true"><span class="a-offscreen">$249.99</span></span>
+        </div>
+      </div>
+      <div data-cy="delivery-recipe">
+        <div class="a-row"><span class="a-color-base">FREE delivery</span> <span class="a-text-bold">Wed, Aug 26</span></div>
+        <div class="a-row"><span class="a-color-price">Only 7 left in stock (more on the way).</span></div>
+      </div>
+    </div>
+
+    <!-- 2. Organic, no list price, no badge -->
+    <div role="listitem" data-asin="B09TQK1LKZ" data-index="5" data-component-type="s-search-result" class="sg-col-20-of-24 s-result-item s-asin">
+      <img class="s-image" src="https://m.media-amazon.com/images/I/61ABCdefGH._AC_UY218_.jpg" alt="Keychron K8 Pro">
+      <div data-cy="title-recipe">
+        <a class="a-link-normal s-line-clamp-2" href="/Keychron-K8-Pro/dp/B09TQK1LKZ">
+          <h2 class="a-size-base-plus a-color-base"><span>Keychron K8 Pro QMK/VIA Wireless Mechanical Keyboard</span></h2>
+        </a>
+      </div>
+      <div data-cy="reviews-block">
+        <div class="a-row a-size-small">
+          <span class="a-declarative">
+            <a class="a-popover-trigger a-declarative" href="#" aria-label="4.2 out of 5 stars, rating details">
+              <i class="a-icon a-icon-star-mini a-star-mini-4"><span class="a-icon-alt">4.2 out of 5 stars</span></i>
+            </a>
+          </span>
+          <span class="rush-component">
+            <a class="a-link-normal s-underline-text" href="/product-reviews/B09TQK1LKZ" aria-label="230 ratings">
+              <span class="a-size-mini s-underline-text">(230)</span>
+            </a>
+          </span>
+        </div>
+      </div>
+      <div data-cy="price-recipe">
+        <div class="a-row"><span class="a-price"><span class="a-offscreen">$94.00</span></span></div>
+      </div>
+      <div data-cy="delivery-recipe">
+        <div class="a-row"><span class="a-color-base">FREE delivery</span> <span class="a-text-bold">Tue, Aug 25</span></div>
+      </div>
+    </div>
+
+    <!-- 3. Organic, brand new listing: no rating, no reviews, no delivery block -->
+    <div role="listitem" data-asin="B0DNEWITEM1" data-index="6" data-component-type="s-search-result" class="sg-col-20-of-24 s-result-item s-asin">
+      <div data-cy="title-recipe">
+        <a class="a-link-normal s-line-clamp-2" href="/dp/B0DNEWITEM1">
+          <h2 class="a-size-base-plus"><span>NuPhy Air75 V2 Low-Profile Mechanical Keyboard</span></h2>
+        </a>
+      </div>
+      <div data-cy="price-recipe">
+        <div class="a-row"><span class="a-price"><span class="a-offscreen">$129.95</span></span></div>
+      </div>
+    </div>
+
+    <!-- 4. Placeholder shell Amazon renders with no title — must be skipped -->
+    <div role="listitem" data-asin="" data-index="7" data-component-type="s-search-result" class="s-result-item"></div>
+    <div role="listitem" data-asin="B0EMPTYSHEL" data-index="8" data-component-type="s-search-result" class="s-result-item"><div class="s-widget"></div></div>
+
+  </div>
+</div>
+<input id="twotabsearchtextbox" value="mechanical keyboard">
+</body>
+</html>
